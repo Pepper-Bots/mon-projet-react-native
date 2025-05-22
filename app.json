@@ -1,5 +1,12 @@
 {
   "expo": {
+    "assetBundlePatterns": ["**/*"],
+    "extra": {
+      "expo-image": {
+        "dangerouslyAllowSvg": true,
+        "dangerouslyAllowRemoteImages": true
+      }
+    },
     "name": "react_native_demo",
     "slug": "react_native_demo",
     "version": "1.0.0",

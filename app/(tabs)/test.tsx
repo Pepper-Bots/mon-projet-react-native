@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from "react-native-safe-area-context";
+// eslint-disable-next-line import/namespace
 import {TestComposant} from "@/components/TestComposant";
 
 
@@ -7,7 +8,7 @@ export default function Test() {
 
     return (
         <SafeAreaView style={styles.conteneur}>
-            <TestComposant value="tutu" callback={() => console.log("titi")}></TestComposant>
+            <TestComposant></TestComposant>
         </SafeAreaView>
     );
 }

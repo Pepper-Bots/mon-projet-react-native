@@ -1,5 +1,6 @@
 import {Text, Pressable, FlatList} from 'react-native';
 import {useEffect, useState} from "react";
+import {CarteUtilisateur} from "@/components/CarteUtilisateur";
 
 
 export function TestComposant() {
@@ -8,6 +9,7 @@ export function TestComposant() {
 
   const [jsxlisteUtilisateurs, setJsxlisteUtilisateurs] = useState([]);
 
+  type UserType = {name : string}  // avec un type on peut faire de l'héritage mais sinon 0 différence avec une interface
 
   const [utilisateurs, setUtilisateurs] = useState<{name: string}[]>([]);
 
@@ -17,10 +19,7 @@ export function TestComposant() {
       .then(utilisateurs => setUtilisateurs(utilisateurs))
   }, []);
 
-  // on met une majuscule parce que c'est un composant
-  const CarteUtilisateur = ({utilisateur}: { utilisateur : {name : string } }) => (
-    <Text>{utilisateur.name}</Text>
-  );
+
 
   return <>
     <Pressable onPress={() => {
@@ -32,7 +31,7 @@ export function TestComposant() {
     <Text>{nombreClics}</Text>
     <FlatList data={utilisateurs} renderItem={
       ({item}) => (
-          <CarteUtilisateur utilisateur={item}></CarteUtilisateur>)
+          <CarteUtilisateur user={item}></CarteUtilisateur>)
     }></FlatList>
   </>
 

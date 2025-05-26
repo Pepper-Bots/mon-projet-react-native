@@ -13,7 +13,7 @@
     "orientation": "automatic",
     "icon": "./assets/images/icon.png",
     "scheme": "reactnativedemo",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true

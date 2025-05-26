@@ -1,4 +1,4 @@
-import {Text, Pressable} from 'react-native';
+import {Text, Pressable, FlatList} from 'react-native';
 import {useEffect, useState} from "react";
 
 
@@ -8,14 +8,19 @@ export function TestComposant() {
 
   const [jsxlisteUtilisateurs, setJsxlisteUtilisateurs] = useState([]);
 
-  useEffect(() => { // qui va déclencher qu'une seule fois la méthode suivante
-    fetch("https://jsonplaceholder.typicode.com/users")// requete sur un serveur - pour l'instant sur un faux svr
-        .then(response => response.json()) // va nous renvoyer un json
-        .then(utilisateurs => setJsxlisteUtilisateurs = utilisateurs.map(  // avec méthode map -> key obligatoire
-            (utilisateur : {name : string})  => (<Text key={utilisateur.name}>{utilisateur.name}</Text>) // objet 'utilisateur' avec une propriété name de type string
-        ))
+
+  const [utilisateurs, setUtilisateurs] = useState<{name: string}[]>([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(response => response.json())
+      .then(utilisateurs => setUtilisateurs(utilisateurs))
   }, []);
 
+  // on met une majuscule parce que c'est un composant
+  const CarteUtilisateur = ({utilisateur}: { utilisateur : {name : string } }) => (
+    <Text>{utilisateur.name}</Text>
+  );
 
   return <>
     <Pressable onPress={() => {
@@ -25,7 +30,10 @@ export function TestComposant() {
       <Text>Presse moi !</Text>
     </Pressable>
     <Text>{nombreClics}</Text>
-    {jsxlisteUtilisateurs}
+    <FlatList data={utilisateurs} renderItem={
+      ({item}) => (
+          <CarteUtilisateur utilisateur={item}></CarteUtilisateur>)
+    }></FlatList>
   </>
 
 }
